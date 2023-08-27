@@ -9,6 +9,8 @@ const showCells = false;
 
 // startbutton click
 generate.addEventListener("click", () => {
+  // inizializziamo le bombe
+  const bombs = generateBombs(1, cellsTotal, 16);
   let cellsTotal = parseInt(difficultySelect.value);
   const whitelist = generateProgressiveArray(1, cellsTotal, 1);
   generateGrid(cellContainer, whitelist, cellsTotal);
@@ -66,3 +68,14 @@ function generateProgressiveArray(from, to, step) {
 
 const generateRandomNumber = (max, min) =>
   Math.floor(Math.random() * (max - min + 1) + min);
+
+//genera array randomico con valori unici
+const generateBombs = (min, max, qty) => {
+  const uniqueArray = [];
+  while (uniqueArray.length < qty) {
+    const uniqueNumber = generateRandomNumber(min, max);
+    if (!uniqueArray.includes(uniqueNumber)) uniqueArray.push(uniqueNumber);
+  }
+
+  return uniqueArray;
+};
