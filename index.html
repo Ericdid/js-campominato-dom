@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>campominato</title>
+    <!-- boostrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- javascript -->
+    <script src="./main/main.js" defer></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="container">
+        <div class="row d-flex justify-content-center mb-3">
+          <div class="col-3">
+            <button id="Generate">Genera Griglia</button>
+            <select class="diff ms-1" id="difficulty">
+              <option selected>Seleziona una difficoltà</option>
+              <option value="100">Facile</option>
+              <option value="81">Media</option>
+              <option value="49">Difficile</option>
+            </select>
+          </div>
+        </div>
+        <ul class="cell-list" id="cells-container"></ul>
+      </div>
+    </div>
+  </body>
+</html>

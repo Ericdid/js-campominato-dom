@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: bisque;
+}
+body {
+  background-color: chocolate;
+}
+button {
+  background-color: transparent;
+  border: none;
+}
+
+.diff {
+  border: none;
+  background-color: chocolate;
+}
+.cell-list {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0;
+  border: 2px solid wheat;
+}
+
+.cell-list > .cell {
+  width: calc(100% / 10);
+  aspect-ratio: 1;
+  border: 2px solid wheat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.cell-list > .cell.cell-81 {
+  width: calc(100% / 9);
+}
+.cell-list > .cell.cell-49 {
+  width: calc(100% / 7);
+}
+
+.cell-list > .cell.cell-even {
+  background-color: darkblue;
+}
+.cell-list > .cell.cell-odd {
+  background-color: darkred;
+}
