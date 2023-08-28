@@ -4,14 +4,21 @@ const difficultySelect = document.getElementById("difficulty");
 const cellContainer = document.getElementById(`cells-container`);
 
 //variabili globali
-const shuffleCells = false;
+const shuffleCells = true;
 const showCells = false;
+let cellsTotal, bombs, score, freeCellsTotal;
 
 // startbutton click
 generate.addEventListener("click", () => {
-  // inizializziamo le bombe
-  const bombs = generateBombs(1, cellsTotal, 16);
-  let cellsTotal = parseInt(difficultySelect.value);
+  cellsTotal = parseInt(difficultySelect.value);
+  // inizializzo le bombe
+  bombs = generateBombs(1, cellsTotal, 16);
+  console.log(bombs);
+  //inizializzo il punteggio
+  score = 0;
+  //conteggio celle libere
+  freeCellsTotal = cellsTotal - bombs.lenght;
+
   const whitelist = generateProgressiveArray(1, cellsTotal, 1);
   generateGrid(cellContainer, whitelist, cellsTotal);
 });
@@ -45,7 +52,16 @@ function generateCell(cellContainer, cellText, cellsTotal) {
   cell.addEventListener("click", function () {
     const index = parseInt(this.getAttribute("data-index"));
     this.innerText = index;
-    this.classList.add(index % 2 == 0 ? "cell-even" : "cell-odd");
+    // this.classList.add(index % 2 == 0 ? "cell-even" : "cell-odd");
+    const cellNumber = parseInt(this.innerText);
+    console.log(bombs, cellNumber);
+    if (bombs.includes(cellNumber)) {
+      this.classList.add("cell-odd");
+      alert("hai preso una bomba");
+    } else {
+      this.classList.add("cell-even");
+      score++;
+    }
   });
 
   if (showCells) {
