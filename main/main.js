@@ -17,12 +17,10 @@ generate.addEventListener("click", () => {
   //inizializzo il punteggio
   score = 0;
   //conteggio celle libere
-  freeCellsTotal = cellsTotal - bombs.lenght;
-
+  freeCellsTotal = cellsTotal - parseInt(bombs.length);
   const whitelist = generateProgressiveArray(1, cellsTotal, 1);
   generateGrid(cellContainer, whitelist, cellsTotal);
 });
-
 // ### GENERA GRIGLIA
 function generateGrid(cellContainer, whitelist, cellsTotal) {
   cellContainer.innerHTML = "";
@@ -52,15 +50,21 @@ function generateCell(cellContainer, cellText, cellsTotal) {
   cell.addEventListener("click", function () {
     const index = parseInt(this.getAttribute("data-index"));
     this.innerText = index;
-    // this.classList.add(index % 2 == 0 ? "cell-even" : "cell-odd");
     const cellNumber = parseInt(this.innerText);
     console.log(bombs, cellNumber);
+    //funzione click bomba
     if (bombs.includes(cellNumber)) {
       this.classList.add("cell-odd");
-      alert("hai preso una bomba");
+      // fine partita - hai preso una bomba
+      alert("hai fatto " + score + " punti");
     } else {
       this.classList.add("cell-even");
       score++;
+      console.log(freeCellsTotal);
+      // fine partita - fine celle libere
+      if (score >= freeCellsTotal) {
+        alert("hai vinto");
+      }
     }
   });
 
