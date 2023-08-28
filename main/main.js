@@ -5,11 +5,13 @@ const cellContainer = document.getElementById(`cells-container`);
 
 //variabili globali
 const shuffleCells = true;
-const showCells = false;
-let cellsTotal, bombs, score, freeCellsTotal;
+let showCells = false;
+let cellsTotal, bombs, score, freeCellsTotal, gameOver;
 
 // startbutton click
 generate.addEventListener("click", () => {
+  //aggiungo condizione di gameover
+  gameOver = false;
   cellsTotal = parseInt(difficultySelect.value);
   // inizializzo le bombe
   bombs = generateBombs(1, cellsTotal, 16);
@@ -48,6 +50,7 @@ function generateCell(cellContainer, cellText, cellsTotal) {
   cell.classList.add("cell-" + cellsTotal);
   // event listener cella
   cell.addEventListener("click", function () {
+    if (gameOver) return;
     const index = parseInt(this.getAttribute("data-index"));
     this.innerText = index;
     const cellNumber = parseInt(this.innerText);
@@ -57,13 +60,15 @@ function generateCell(cellContainer, cellText, cellsTotal) {
       this.classList.add("cell-odd");
       // fine partita - hai preso una bomba
       alert("hai fatto " + score + " punti");
+      gameOver = true;
+      console.log(showCells);
     } else {
       this.classList.add("cell-even");
       score++;
-      console.log(freeCellsTotal);
       // fine partita - fine celle libere
       if (score >= freeCellsTotal) {
         alert("hai vinto");
+        gameOver = true;
       }
     }
   });
